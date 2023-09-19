@@ -7,7 +7,7 @@ const Router = express.Router();
 Router.route("/")
   .get(tourControlle.getAllTours)
   .post(tourControlle.createTour);
-Router.route("/api/v1/tours/:id")
+Router.route("/:id")
   .get(tourControlle.getTour)
   .patch(tourControlle.upDateTour)
   .delete(tourControlle.deleteTour);
