@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const TourSchema = new Schema({
+ 
   name: {
     type: String,
     required: [true, "A tour must have a name"],
@@ -53,6 +54,11 @@ const TourSchema = new Schema({
     select:false
   },
   startDates:[Date]
+},{
+toJSON:{virtuals:true},
+toObject:{virtuals:true}
+
+
 });
 
 TourSchema.virtual('durationWeeks').get(function(){
