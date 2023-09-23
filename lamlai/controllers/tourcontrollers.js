@@ -21,8 +21,14 @@ exports.getAllTours = async (req, res) => {
     if(req.query.sort){
       query=query.sort(req.query.sort);
       //sort=price increasing
-      //sort=-price decreasing
-
+      //sort=-price decreasing 
+    }
+    //3)Field limiting
+    if(req.query.fields){
+      const fields=req.query.fields.split(',').join(' ');
+      query= query.select(fields)
+    }else{
+      query= query.select('-__v')
     }
 
 

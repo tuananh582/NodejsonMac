@@ -50,9 +50,14 @@ const TourSchema = new Schema({
   createdAt:{
     type:Date,
     default:Date.now(),
+    select:false
   },
   startDates:[Date]
 });
+
+TourSchema.virtual('durationWeeks').get(function(){
+  return this.duration/7
+})
 
 const Tour = model("Tour", TourSchema);
 module.exports = Tour;
