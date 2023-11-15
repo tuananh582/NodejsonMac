@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
 const fs = require("fs");
-const morgan = require("morgan");
 app.use(express.json());
 const tourRoutes = require("./routes/tourRoutes");
+const userRoutes= require('./routes/userRoutes')
 const connectDb = require("./config/database");
+require("dotenv").config();
 connectDb()
+
 // const mongoose =require('mongoose')
 // mongoose.connect("mongodb://localhost:27017/natours", {
 //       useNewUrlParser: true,
@@ -27,7 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/v1/tours", tourRoutes);
-
+app.use('/api/v1/users',userRoutes)
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log("Sever is running");
